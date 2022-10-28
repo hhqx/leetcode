@@ -1,0 +1,39 @@
+
+vscode:
+    "leetcode.editor.shortcuts": [
+            "submit",
+            "test",
+            "description",
+            "solution"
+        ],
+        "leetcode.endpoint": "leetcode-cn",
+        "leetcode.showDescription": "Both",
+        "editor.guides.indentation": false,
+        "leetcode.hint.configWebviewMarkdown": false,
+        "leetcode.defaultLanguage": "python3",
+        "leetcode.hint.commentDescription": false,
+        "leetcode.hint.commandShortcut": false,
+        "leetcode.workspaceFolder": "D:\\Graduate\\Projects\\github\\leetcode",
+        "leetcode.useEndpointTranslation": false,
+        "leetcode.filePath": {
+
+            "default": {
+                "folder": "editor/cn",
+                "filename": "${id}.${camelCaseName}.${ext}"
+            }
+        },
+
+pycharm:
+    filename: $!{question.frontendQuestionId}.$!velocityTool.smallCamelCaseName(${question.title})
+    template: 
+        question_content = ${question.content}
+
+        from typing import *
+        from PythonLeetcodeRunner import *
+
+        # @lc code=start
+        ${question.code}# @lc code=end
+
+        if __name__ == "__main__":
+            TestObj = StartTest(question_content, Solution)
+            TestObj.run_test()

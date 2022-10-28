@@ -7,4 +7,6 @@
     },
     "code-runner.saveFileBeforeRun": true,
     "code-runner.runInTerminal": true,
+
+    // leetcode template path:  C:\Users\USER_NAME\.vscode\extensions\leetcode.vscode-leetcode-0.18.1\node_modules\vsc-leetcode-cli\templates\detailed.tpl
 }
