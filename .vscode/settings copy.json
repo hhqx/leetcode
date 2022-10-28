@@ -1,0 +1,20 @@
+{
+    
+
+    /* python */
+    "python.defaultInterpreterPath": "D:/Program Files/Python/Python392",
+    "code-runner.fileDirectoryAsCwd": false,// false且不设置cwd时默认vscode文件夹目录
+    // "code-runner.fileDirectoryAsCwd": true,
+    // 包含中文路径时customized parameters(vscode中叫Predefined variables)的替换会乱码
+    "code-runner.customCommand": "echo ${file}",
+    "code-runner.executorMap": {
+        
+        // -u 表示及时打印输出不缓存,python高级版本加不加效果都一样
+        // "python": "set PYTHONIOENCODING=utf8 && \"D:/Program Files/Python/Python392/python\" ",
+        "python": "set PYTHONIOENCODING=utf8; & \"D:/Program Files/Python/Python392/python\" ",
+        // "python": "set PYTHONIOENCODING=utf8 && cd $workspaceRoot && \"D:/Program Files/Python/Python392/python\" -u $fullFileName",
+    },
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.runInTerminal": true,
+    
+}
