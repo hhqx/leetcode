@@ -1,0 +1,40 @@
+### 思路与算法
+
+按照正常的思路，遍历所有子串并统计其中的唯一字符肯定会超时，因此必须想出一种办法来减小时间复杂度。
+注意到某个字符被统计时当且仅当子串中仅包含一个该字符，因此对于某个字符，只需找出所有仅包含一个该字符的子串并计数即可。
+对于下标为 $i$ 的字符，其上一次出现位置为 $j$，下一次出现位置为 $k$。那么仅包含该字符一次的子串可能有 $(i-j)\times (k-i)$个。
+实际处理中可使用哈希表存储每个字符的出现位置。
+
+* java
+
+```java
+class Solution {
+    public int uniqueLetterString(String s) {
+        Map<Character, List<Integer>> index = new HashMap<>();
+        for(int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if(!index.containsKey(c)) {
+                index.put(c, new ArrayList<Integer>());
+                index.get(c).add(-1);
+            }
+            index.get(c).add(i);
+        }
+
+        int ans = 0;
+        for(Map.Entry<Character, List<Integer>> entry: index.entrySet()) {
+            List<Integer> idx = entry.getValue();
+            idx.add(s.length());
+            for(int i=1; i+1<idx.size(); i++) {
+                ans += (idx.get(i) - idx.get(i-1)) * (idx.get(i+1) - idx.get(i));
+            }
+        }
+        return ans;
+    }
+}
+```
+
+### 复杂度分析
+
+- 时间复杂度：$O(n)$。遍历最多n次。
+- 空间复杂度：$O(n)$。哈希表消耗空间$O(n)$。
+

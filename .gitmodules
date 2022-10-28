@@ -1,0 +1,3 @@
+[submodule "PythonLeetcodeRunner"]
+	path = PythonLeetcodeRunner
+	url = git@github.com:hhqx/RunLeetcodeInLocal.git
