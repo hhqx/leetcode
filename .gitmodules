@@ -4,3 +4,6 @@
 [submodule "git-learn"]
 	path = git-learn
 	url = git@github.com:hhqx/git-learn.git
+[submodule "PythonLeetcodeRunner"]
+	path = PythonLeetcodeRunner
+	url = git@github.com:hhqx/RunLeetcodeInLocal.git
