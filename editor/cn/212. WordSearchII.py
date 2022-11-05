@@ -145,6 +145,69 @@ class Solution:
         return list(ans)
 
 
+class Trie:
+    def __init__(self):
+        self.children = defaultdict(Trie)
+        self.word = ""
+
+    def insert(self, word):
+        cur = self
+        for c in word:
+            cur = cur.children[c]
+        # 在字符串的最后一个字符的节点处, 添加上该字符串
+        cur.word = word
+
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        # 建立 Trie
+        trie = Trie()
+        for w in words:
+            trie.insert(w)
+
+        # 深度优先遍历
+        def dfs(x, y, cur):
+            if x < 0 or x >= m or y < 0 or y >= n:
+                return
+            # 若当前字符不在备选项里面, 返回
+            if board[x][y] == '.' or board[x][y] not in cur.children:
+                return
+
+            # 打上访问标记
+            c = board[x][y]
+            board[x][y] = '.'
+
+            # 若存在子节点, 且子节点为字符串结束点, 添加上该字符串
+            nxt = cur.children[c]
+            if len(nxt.word):
+                ans.append(nxt.word)
+                # 匹配到之后删除, 防止重复检测
+                nxt.word = ""
+
+                # 遍历子节点
+            # for i, j in ((x+1, y), (x-1, y), (x, y+1), (x, y-1), ):
+            #     dfs(i, j, nxt)
+            dfs(x + 1, y, nxt)
+            dfs(x - 1, y, nxt)
+            dfs(x, y + 1, nxt)
+            dfs(x, y - 1, nxt)
+
+            # 子节点匹配到之后删除, 防止重复检测
+            # 这里是后序回溯的时候从叶子节点向上删
+            if not nxt.children:
+                cur.children.pop(c)
+
+            # 擦除访问标记
+            board[x][y] = c
+
+        # 尝试对每个格子都进行一次 dfs
+        ans = []
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                dfs(i, j, trie)
+
+        return ans
 # leetcode submit region end(Prohibit modification and deletion)
 # @lc code=end
 
