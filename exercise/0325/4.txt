@@ -1,0 +1,6 @@
+LOGNAME=default;SHELL=/bin/bash;HOME=/home/xiaomei;LOGNAME=xiaomei;
+4
+SHELL
+HOME
+LOGNAME
+logname

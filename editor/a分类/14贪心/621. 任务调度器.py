@@ -62,61 +62,6 @@ from PythonLeetcodeRunner import *
 # @lc code=start
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
-    """ 这个是草稿版, 有很多无用代码 """
-
-    def leastInterval(self, tasks: List[str], n: int) -> int:
-        """ 策略, 从当前冷却完成的任务中选择频次最高的执行, """
-        from sortedcontainers import SortedList
-        INF = float('inf')
-        d = Counter(tasks)
-        heap = []
-        for k, freq in d.items():
-            heapq.heappush(heap, (-freq, -INF, k))
-
-        q = SortedList((-INF, freq, k) for k, freq in d.items())
-        # q = [(-INF, freq, k) for k, freq in d.items()]
-
-        # 用大顶堆每次筛选出频次最高的执行, 相同频次选取上次一执行时间小的
-        # 错误
-        # 若冷却不满足, 等待
-        cool = deque([None] * n)
-        t = 0
-        cnt = 0
-        while cnt != len(d):
-            if heap:
-                freq, last_t, task = heapq.heappop(heap)
-                freq = -freq
-
-                # t += 1
-                print(task)
-                if t - last_t - 1 >= n:
-
-                    pass
-                else:
-                    # print('error', last_t, t, n)
-                    # t = last_t + n + 1
-                    pass
-
-                freq -= 1
-                if freq > 0:
-                    cool.append((-freq, t, task))
-                else:
-                    cnt += 1
-                    cool.append(None)
-            else:
-                print('cool')
-                # t += 1
-                cool.append(None)
-            t += 1
-            if cool:
-                item = cool.popleft()
-                if item:
-                    heapq.heappush(heap, item)
-
-        return t
-
-
-class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         """
         策略, 从当前冷却完成的任务中选择频次最高的执行,
@@ -170,7 +115,6 @@ class Solution:
 
         ans = max(cnt + (k - 1) * (n+1), len(tasks))
         return ans
-
 
 # leetcode submit region end(Prohibit modification and deletion)
 # @lc code=end
