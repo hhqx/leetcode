@@ -55,6 +55,7 @@ from PythonLeetcodeRunner import *
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        pass
 # leetcode submit region end(Prohibit modification and deletion)
 # @lc code=end
 
