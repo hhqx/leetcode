@@ -26,11 +26,10 @@ take the second bus to the bus stop 6.
 
  Example 2: 
 
- 
-Input: routes = [[7,12],[4,5,15],[6],[15,19],[9,12,13]], source = 15, target = 1
-2
+
+Input: routes = [[7,12],[4,5,15],[6],[15,19],[9,12,13]], source = 15, target = 12
 Output: -1
- 
+
 
  
  Constraints: 
@@ -51,11 +50,45 @@ Output: -1
 from typing import *
 from PythonLeetcodeRunner import *
 
+
 # @lc code=start
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
-        pass
+        """ 把公交线路视作一个节点, 找出每条线路之间的连接关系, bfs """
+        busInStop = defaultdict(list)
+        for i, route in enumerate(routes):
+            for stop in route:
+                busInStop[stop].append(i)
+
+        edges = [[] for _ in range(len(routes))]
+        for buses in busInStop.values():
+            for i in range(len(buses)):
+                for j in range(i):
+                    edges[buses[i]].append(buses[j])
+                    edges[buses[j]].append(buses[i])
+
+        start = busInStop[source]
+        if source == target:
+            return 0
+        des = set(busInStop[target])
+        q = deque(start)
+        step, vis = 1, set()
+        while q:
+            for _ in range(len(q)):
+                u = q.popleft()
+                if u in des:
+                    return step
+                for v in edges[u]:
+                    if v in vis:
+                        continue
+                    vis.add(v)
+                    q.append(v)
+            step += 1
+
+        return -1
+
+
 # leetcode submit region end(Prohibit modification and deletion)
 # @lc code=end
 
