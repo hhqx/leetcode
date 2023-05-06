@@ -83,6 +83,7 @@ class Solution:
 
         # 修改价格权重
         def dfs_m(u, end, par):
+            """ dfs 求路径和 """
             nonlocal dcnt
             dcnt += 1
 
@@ -115,6 +116,7 @@ class Solution:
         # dfs 递归bp
         @cache
         def dfs(u, flag, par):
+            """ 树形打家劫舍, 树形dp """
             nonlocal dcnt
             dcnt += 1
 
