@@ -2,5 +2,6 @@
 .idea/**
 __pycache__
 __pycache__/**
-
+__tmp__
+__tmp__/**
 ## git push  有问题时, 先尝试 git push --force-with-lease
